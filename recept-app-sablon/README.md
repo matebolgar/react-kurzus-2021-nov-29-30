@@ -16,6 +16,10 @@ POST	"/api/recipes"	Új recept létrehozása
 PUT	"/api/recipes/:id"	Recept felülírása id alapján
 DELETE	"/api/recipes/:id"	Recept törlése id alapján
 
+A képek a "/static/images" publikus mappába mentődnek, így a React appodból innen tudod őket megszerezni.
+
+Az egyéb statikus fájlok (pl a logó), a "/static/assets" mappából nyerhetőek ki!
+
 
 Ajánlott komponens felosztás:
  App

@@ -60,13 +60,96 @@ function PostList() {
     };
   }, []);
 
+  var _React$useState9 = React.useState(""),
+      _React$useState10 = _slicedToArray(_React$useState9, 2),
+      title = _React$useState10[0],
+      setTitle = _React$useState10[1];
+
+  var _React$useState11 = React.useState(false),
+      _React$useState12 = _slicedToArray(_React$useState11, 2),
+      isTitleError = _React$useState12[0],
+      setTitleError = _React$useState12[1];
+
+  var _React$useState13 = React.useState(false),
+      _React$useState14 = _slicedToArray(_React$useState13, 2),
+      isInvalidCharacterError = _React$useState14[0],
+      setInvalidCharacterError = _React$useState14[1];
+
+  React.useEffect(function () {
+    setTitleError(title.length > 10);
+  }, [title]);
+
+  // (string, Array<string>) -> bool
+  function containsInvalidChar(str, blacklist) {
+    return str.split("").some(function (char) {
+      return blacklist.includes(char);
+    });
+  }
+
+  React.useEffect(function () {
+    var characterBlackList = ["<", ">", "&", "@"];
+    setInvalidCharacterError(containsInvalidChar(title, characterBlackList));
+  }, [title]);
+
+  var _React$useState15 = React.useState(""),
+      _React$useState16 = _slicedToArray(_React$useState15, 2),
+      body = _React$useState16[0],
+      setBody = _React$useState16[1];
+
+  React.useEffect(function () {
+    console.log(body);
+  }, [body]);
+
   return React.createElement(
     React.Fragment,
     null,
     React.createElement(
       "div",
       null,
-      "Navbar",
+      React.createElement(
+        "h1",
+        null,
+        "\xDAj poszt"
+      ),
+      React.createElement(
+        "form",
+        { className: "card m-3" },
+        React.createElement("input", {
+          className: "form-control m-2 " + (isTitleError || isInvalidCharacterError ? "border border-danger" : ""),
+          type: "text",
+          name: "title",
+          placeholder: "C\xEDm",
+          onChange: function onChange(e) {
+            setTitle(e.target.value);
+          },
+          value: title
+        }),
+        isTitleError ? React.createElement(
+          "p",
+          { className: "text-danger" },
+          "Hiba! C\xEDm hosszabb mint 10 karakter..."
+        ) : "",
+        isInvalidCharacterError ? React.createElement(
+          "p",
+          { className: "text-danger" },
+          "Invalid karakter..."
+        ) : "",
+        React.createElement("textarea", {
+          className: "form-control m-2",
+          type: "text",
+          name: "body",
+          placeholder: "Tartalom",
+          value: body,
+          onChange: function onChange(e) {
+            setBody(e.target.value);
+          }
+        }),
+        React.createElement(
+          "button",
+          { className: "btn btn-success" },
+          "K\xFCld\xE9s"
+        )
+      ),
       React.createElement(
         "ul",
         null,
@@ -129,30 +212,4 @@ function ListItem(props) {
   );
 }
 
-function App() {
-  var _React$useState9 = React.useState(false);
-
-  var _React$useState10 = _slicedToArray(_React$useState9, 2);
-
-  isMounted = _React$useState10[0];
-  setMounted = _React$useState10[1];
-
-  return React.createElement(
-    "div",
-    null,
-    React.createElement(
-      "button",
-      {
-        onClick: function onClick() {
-          setMounted(function (prev) {
-            return !prev;
-          });
-        }
-      },
-      "Toggle PostList"
-    ),
-    isMounted ? React.createElement(PostList, null) : "Nincs mountolva a PostList komponens..."
-  );
-}
-
-ReactDOM.render(React.createElement(App, null), document.getElementById("app-container"));
+ReactDOM.render(React.createElement(PostList, null), document.getElementById("app-container"));

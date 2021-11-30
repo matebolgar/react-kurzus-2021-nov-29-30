@@ -43,10 +43,60 @@ function PostList() {
     };
   }, []);
 
+  const [title, setTitle] = React.useState("");
+  const [isTitleError, setTitleError] = React.useState(false);
+  const [isInvalidCharacterError, setInvalidCharacterError] = React.useState(false);
+
+  React.useEffect(() => {
+    setTitleError(title.length > 10);
+  }, [title]);
+
+  // (string, Array<string>) -> bool
+  function containsInvalidChar(str, blacklist) {
+    return str.split("").some((char) => blacklist.includes(char))
+  }
+
+  React.useEffect(() => {
+    const characterBlackList = ["<", ">", "&", "@"];
+    setInvalidCharacterError(containsInvalidChar(title, characterBlackList));
+  }, [title]);
+
+  const [body, setBody] = React.useState("");
+  React.useEffect(() => {
+    console.log(body);
+  }, [body]);
+
   return (
     <React.Fragment>
       <div>
-        Navbar
+        <h1>Új poszt</h1>
+        <form className="card m-3">
+          <input
+            className={"form-control m-2 " + (isTitleError || isInvalidCharacterError ? "border border-danger" : "")}
+            type="text"
+            name="title"
+            placeholder="Cím"
+            onChange={(e) => {
+              setTitle(e.target.value);
+            }}
+            value={title}
+          />
+          {isTitleError ? <p className="text-danger">Hiba! Cím hosszabb mint 10 karakter...</p> : ""}
+          {isInvalidCharacterError ? <p className="text-danger">Invalid karakter...</p> : ""}
+
+          <textarea
+            className="form-control m-2"
+            type="text"
+            name="body"
+            placeholder="Tartalom"
+            value={body}
+            onChange={(e) => {
+              setBody(e.target.value);
+            }}
+          ></textarea>
+
+          <button className="btn btn-success">Küldés</button>
+        </form>
         <ul>
           {posts.map((post) => (
             <ListItem
@@ -95,21 +145,4 @@ function ListItem(props) {
   );
 }
 
-function App() {
-  [isMounted, setMounted] = React.useState(false);
-  return (
-    <div>
-      <button
-        onClick={() => {
-          setMounted((prev) => !prev);
-        }}
-      >
-        Toggle PostList
-      </button>
-
-      {isMounted ? <PostList /> : "Nincs mountolva a PostList komponens..."}
-    </div>
-  );
-}
-
-ReactDOM.render(<App />, document.getElementById("app-container"));
+ReactDOM.render(<PostList />, document.getElementById("app-container"));

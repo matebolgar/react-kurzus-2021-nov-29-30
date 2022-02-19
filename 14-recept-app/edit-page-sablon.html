@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+    crossorigin="anonymous"
+  />
+  </head>
+  <body>
+    <div className="card p-3">
+        <h1>Recept szerkesztése:</h1>
+        <hr />
+        <form>
+          <div className="form-group row pb-3 border-bottom">
+            <label className="col-sm-2 col-form-label">Név:</label>
+            <div className="col-sm-10">
+              <input type="text" name="name" className="form-control" defaultValue={recipe.name} required />
+            </div>
+          </div>
+          <div className="form-group row pb-3 border-bottom">
+            <label className="col-sm-2 col-form-label">Hozzávalók:</label>
+              <div className="col-sm-10 offset-2">
+                <div className="row mb-3 border-bottom">
+                  <div className="col-md-6">
+                    <input
+                      type="text"
+                      name="ingredient-name-{receptNeve}"
+                      className="form-control d-inline-block mr-2 mb-2"
+                      placeholder="Név"
+                      defaultValue={ingredient.name}
+                      required
+                    />
+                  </div>
+                  <div className="col-md-2">
+                    <input
+                      type="text"
+                      name="ingredient-quantity-1"
+                      className="form-control d-inline-block mr-2 mb-2"
+                      placeholder="Mennyiség"
+                      required
+                    />
+                  </div>
+                  <div className="col-md-2">
+                    <select
+                      name="ingredient-type-1"
+                      className="form-control d-inline-block mr-2 mb-2"
+                      defaultValue={ingredient.type}
+                    >
+                      <option value="" disabled>
+                        Típus
+                      </option>
+                      <option value="meat">Hús</option>
+                      <option value="drink">Ital</option>
+                      <option value="dairy">Tejtermék</option>
+                      <option value="fruit">Gyümölcs</option>
+                      <option value="spice">Fűszer</option>
+                      <option value="spice">Egyéb</option>
+                    </select>
+                  </div>
+                  <div className="col-md-2">
+                    
+                      <div className="w-100">
+                        <button
+                          className="btn btn-danger mb-3"
+                          type="button"
+                        >
+                          <FontAwesomeIcon icon={faTrash} />
+                        </button>
+                      </div>
+         
+                  </div>
+                </div>
+              </div>
+            
+            <div className="row w-100">
+              <div className="col-md-3 offset-md-9">
+                <button
+                  type="button"
+                  className="btn btn-success btn-sm float-right"
+                >
+                  <FontAwesomeIcon icon={faPlus} />
+                </button>
+              </div>
+            </div>
+          </div>
+          <div className="form-group row pb-3 border-bottom">
+            <label className="col-sm-2 col-form-label">Lépések:</label>
+           
+              <div className="col-sm-10 offset-2">
+                <div className={"row mb-3 " + (i === steps.length - 1 ? "" : "border-bottom")}>
+                  <div className="col-md-6">
+                    <input
+                      type="text"
+                      name={"step-content-" + i}
+                      className="form-control d-inline-block mr-2 mb-2"
+                      placeholder={i + 1 + ". lépés"}
+                      defaultValue={step.content}
+                      required
+                    />
+                  </div>
+                  <div className="col-md-2">
+                    <input
+                      type="number"
+                      name={"step-timer-" + i}
+                      className="form-control d-inline-block mr-2 mb-2"
+                      placeholder="Idő"
+                      defaultValue={step.timer}
+                      required
+                    />
+                  </div>
+                  <div className="col-md-2">
+                    <div className="w-100">
+                      <button
+                        className="btn btn-danger mb-3"
+                        type="button"
+                      >
+                        <FontAwesomeIcon icon={faTrash} />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            
+            <div className="row w-100">
+              <div className="col-md-3 offset-md-9">
+                <button
+                  type="button"
+                  className="btn btn-success btn-sm float-right"
+                >
+                  <FontAwesomeIcon icon={faPlus} />
+                </button>
+              </div>
+            </div>
+          </div>
+          <div className="form-group row pb-3 border-bottom">
+            <label className="col-sm-2 col-form-label">Kép:</label>
+            <div className="col-md-5">
+              <input type="file" name="img-url" className="form-control" />
+              <i>Figyelem, a fájlfeltöltés csak a mellékelt szerver programban működik!</i>
+            </div>
+            <div className="col-md-5">
+              <img
+                src={`${process.env.REACT_APP_BACKEND_URL}/static/images/${recipe.imageURL}`}
+                className="img-thumbnail"
+              />
+            </div>
+          </div>
+          <button type="submit" className="btn btn-success btn-sm">
+            Küldés <FontAwesomeIcon icon={faCheckCircle} />
+          </button>
+        </form>
+      </div>
+  </body>
+</html>

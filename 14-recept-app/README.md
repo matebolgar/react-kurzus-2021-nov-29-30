@@ -31,6 +31,9 @@ Az egyéb statikus fájlok (pl a logó), a "/static/assets" mappából nyerhető
 - Modal
 - Spinner
 
+### Sablonok:
+Az egyes komponensekhez a `/app/src/sablonok` mappában lévő statikus HTML fájlokat tudod alapul venni!
+
 ## Harmadik féltől származó könyvtárak:
 
 ### Create React App:

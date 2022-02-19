@@ -6,55 +6,126 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link
-    rel="stylesheet"
-    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
-    crossorigin="anonymous"
-  />
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
   </head>
   <body>
-    <div className="card p-3">
-        <h1>Recept szerkesztése:</h1>
-        <hr />
-        <form>
-          <div className="form-group row pb-3 border-bottom">
-            <label className="col-sm-2 col-form-label">Név:</label>
-            <div className="col-sm-10">
-              <input type="text" name="name" className="form-control" defaultValue={recipe.name} required />
+    <div id="root">
+      <nav class="navbar navbar-expand-sm navbar-dark bg-primary mb-3">
+        <div class="" id="navbarNav">
+          <ul class="navbar-nav lead font-weight-bold">
+            <li class="nav-item">
+              <a href="/"
+                ><span class="nav-link"
+                  ><img width="60px" src="http://localhost:9090/static/assets/logo.png" alt="" /></span
+              ></a>
+            </li>
+            <li class="nav-item">
+              <a href="/receptek"><span class="nav-link pt-4">Receptek</span></a>
+            </li>
+            <li class="nav-item">
+              <a href="/uj-recept"><span class="nav-link pt-4">Új recept</span></a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div class="container">
+        <div class="card p-3">
+          <h1>Recept szerkesztése:</h1>
+          <hr />
+          <form>
+            <div class="form-group row pb-3 border-bottom">
+              <label class="col-sm-2 col-form-label">Név:</label>
+              <div class="col-sm-10">
+                <input type="text" name="name" class="form-control" required="" value="Rostélyos sült" />
+              </div>
             </div>
-          </div>
-          <div className="form-group row pb-3 border-bottom">
-            <label className="col-sm-2 col-form-label">Hozzávalók:</label>
-              <div className="col-sm-10 offset-2">
-                <div className="row mb-3 border-bottom">
-                  <div className="col-md-6">
+            <div class="form-group row pb-3 border-bottom">
+              <label class="col-sm-2 col-form-label">Hozzávalók:</label>
+              <div class="col-sm-10 offset-2">
+                <div class="row mb-3 border-bottom">
+                  <div class="col-md-6">
                     <input
                       type="text"
-                      name="ingredient-name-{receptNeve}"
-                      className="form-control d-inline-block mr-2 mb-2"
+                      name="ingredient-name-0"
+                      class="form-control d-inline-block mr-2 mb-2"
                       placeholder="Név"
-                      defaultValue={ingredient.name}
-                      required
+                      required=""
+                      value="marha sült"
                     />
                   </div>
-                  <div className="col-md-2">
+                  <div class="col-md-2">
+                    <input
+                      type="text"
+                      name="ingredient-quantity-0"
+                      class="form-control d-inline-block mr-2 mb-2"
+                      placeholder="Mennyiség"
+                      required=""
+                      value="1"
+                    />
+                  </div>
+                  <div class="col-md-2">
+                    <select name="ingredient-type-0" class="form-control d-inline-block mr-2 mb-2">
+                      <option value="" disabled="">Típus</option>
+                      <option value="meat" selected="">Hús</option>
+                      <option value="drink">Ital</option>
+                      <option value="dairy">Tejtermék</option>
+                      <option value="fruit">Gyümölcs</option>
+                      <option value="spice">Fűszer</option>
+                      <option value="spice">Egyéb</option>
+                    </select>
+                  </div>
+                  <div class="col-md-2">
+                    <div class="w-100">
+                      <button class="btn btn-danger mb-3" type="button">
+                        <svg
+                          aria-hidden="true"
+                          focusable="false"
+                          data-prefix="fas"
+                          data-icon="trash"
+                          class="svg-inline--fa fa-trash fa-w-14"
+                          role="img"
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 448 512"
+                        >
+                          <path
+                            fill="currentColor"
+                            d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z"
+                          ></path>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-10 offset-2">
+                <div class="row mb-3 border-bottom">
+                  <div class="col-md-6">
+                    <input
+                      type="text"
+                      name="ingredient-name-1"
+                      class="form-control d-inline-block mr-2 mb-2"
+                      placeholder="Név"
+                      required=""
+                      value="barna mártáskeverék"
+                    />
+                  </div>
+                  <div class="col-md-2">
                     <input
                       type="text"
                       name="ingredient-quantity-1"
-                      className="form-control d-inline-block mr-2 mb-2"
+                      class="form-control d-inline-block mr-2 mb-2"
                       placeholder="Mennyiség"
-                      required
+                      required=""
+                      value="1 csomag"
                     />
                   </div>
-                  <div className="col-md-2">
-                    <select
-                      name="ingredient-type-1"
-                      className="form-control d-inline-block mr-2 mb-2"
-                      defaultValue={ingredient.type}
-                    >
-                      <option value="" disabled>
-                        Típus
-                      </option>
+                  <div class="col-md-2">
+                    <select name="ingredient-type-1" class="form-control d-inline-block mr-2 mb-2">
+                      <option value="" disabled="">Típus</option>
                       <option value="meat">Hús</option>
                       <option value="drink">Ital</option>
                       <option value="dairy">Tejtermék</option>
@@ -63,98 +134,455 @@
                       <option value="spice">Egyéb</option>
                     </select>
                   </div>
-                  <div className="col-md-2">
-                    
-                      <div className="w-100">
-                        <button
-                          className="btn btn-danger mb-3"
-                          type="button"
+                  <div class="col-md-2">
+                    <div class="w-100">
+                      <button class="btn btn-danger mb-3" type="button">
+                        <svg
+                          aria-hidden="true"
+                          focusable="false"
+                          data-prefix="fas"
+                          data-icon="trash"
+                          class="svg-inline--fa fa-trash fa-w-14"
+                          role="img"
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 448 512"
                         >
-                          <FontAwesomeIcon icon={faTrash} />
-                        </button>
-                      </div>
-         
-                  </div>
-                </div>
-              </div>
-            
-            <div className="row w-100">
-              <div className="col-md-3 offset-md-9">
-                <button
-                  type="button"
-                  className="btn btn-success btn-sm float-right"
-                >
-                  <FontAwesomeIcon icon={faPlus} />
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className="form-group row pb-3 border-bottom">
-            <label className="col-sm-2 col-form-label">Lépések:</label>
-           
-              <div className="col-sm-10 offset-2">
-                <div className={"row mb-3 " + (i === steps.length - 1 ? "" : "border-bottom")}>
-                  <div className="col-md-6">
-                    <input
-                      type="text"
-                      name={"step-content-" + i}
-                      className="form-control d-inline-block mr-2 mb-2"
-                      placeholder={i + 1 + ". lépés"}
-                      defaultValue={step.content}
-                      required
-                    />
-                  </div>
-                  <div className="col-md-2">
-                    <input
-                      type="number"
-                      name={"step-timer-" + i}
-                      className="form-control d-inline-block mr-2 mb-2"
-                      placeholder="Idő"
-                      defaultValue={step.timer}
-                      required
-                    />
-                  </div>
-                  <div className="col-md-2">
-                    <div className="w-100">
-                      <button
-                        className="btn btn-danger mb-3"
-                        type="button"
-                      >
-                        <FontAwesomeIcon icon={faTrash} />
+                          <path
+                            fill="currentColor"
+                            d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z"
+                          ></path>
+                        </svg>
                       </button>
                     </div>
                   </div>
                 </div>
               </div>
-            
-            <div className="row w-100">
-              <div className="col-md-3 offset-md-9">
-                <button
-                  type="button"
-                  className="btn btn-success btn-sm float-right"
-                >
-                  <FontAwesomeIcon icon={faPlus} />
-                </button>
+              <div class="col-sm-10 offset-2">
+                <div class="row mb-3 border-bottom">
+                  <div class="col-md-6">
+                    <input
+                      type="text"
+                      name="ingredient-name-2"
+                      class="form-control d-inline-block mr-2 mb-2"
+                      placeholder="Név"
+                      required=""
+                      value="szárított olasz salátaöntet keverék"
+                    />
+                  </div>
+                  <div class="col-md-2">
+                    <input
+                      type="text"
+                      name="ingredient-quantity-2"
+                      class="form-control d-inline-block mr-2 mb-2"
+                      placeholder="Mennyiség"
+                      required=""
+                      value="1 csomag"
+                    />
+                  </div>
+                  <div class="col-md-2">
+                    <select name="ingredient-type-2" class="form-control d-inline-block mr-2 mb-2">
+                      <option value="" disabled="">Típus</option>
+                      <option value="meat">Hús</option>
+                      <option value="drink">Ital</option>
+                      <option value="dairy">Tejtermék</option>
+                      <option value="fruit">Gyümölcs</option>
+                      <option value="spice" selected="">Fűszer</option>
+                      <option value="spice">Egyéb</option>
+                    </select>
+                  </div>
+                  <div class="col-md-2">
+                    <div class="w-100">
+                      <button class="btn btn-danger mb-3" type="button">
+                        <svg
+                          aria-hidden="true"
+                          focusable="false"
+                          data-prefix="fas"
+                          data-icon="trash"
+                          class="svg-inline--fa fa-trash fa-w-14"
+                          role="img"
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 448 512"
+                        >
+                          <path
+                            fill="currentColor"
+                            d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z"
+                          ></path>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-10 offset-2">
+                <div class="row mb-3 border-bottom">
+                  <div class="col-md-6">
+                    <input
+                      type="text"
+                      name="ingredient-name-3"
+                      class="form-control d-inline-block mr-2 mb-2"
+                      placeholder="Név"
+                      required=""
+                      value="száraz ranch dressing mix"
+                    />
+                  </div>
+                  <div class="col-md-2">
+                    <input
+                      type="text"
+                      name="ingredient-quantity-3"
+                      class="form-control d-inline-block mr-2 mb-2"
+                      placeholder="Mennyiség"
+                      required=""
+                      value="1 csomag"
+                    />
+                  </div>
+                  <div class="col-md-2">
+                    <select name="ingredient-type-3" class="form-control d-inline-block mr-2 mb-2">
+                      <option value="" disabled="">Típus</option>
+                      <option value="meat">Hús</option>
+                      <option value="drink">Ital</option>
+                      <option value="dairy">Tejtermék</option>
+                      <option value="fruit">Gyümölcs</option>
+                      <option value="spice" selected="">Fűszer</option>
+                      <option value="spice">Egyéb</option>
+                    </select>
+                  </div>
+                  <div class="col-md-2">
+                    <div class="w-100">
+                      <button class="btn btn-danger mb-3" type="button">
+                        <svg
+                          aria-hidden="true"
+                          focusable="false"
+                          data-prefix="fas"
+                          data-icon="trash"
+                          class="svg-inline--fa fa-trash fa-w-14"
+                          role="img"
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 448 512"
+                        >
+                          <path
+                            fill="currentColor"
+                            d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z"
+                          ></path>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-10 offset-2">
+                <div class="row mb-3">
+                  <div class="col-md-6">
+                    <input
+                      type="text"
+                      name="ingredient-name-4"
+                      class="form-control d-inline-block mr-2 mb-2"
+                      placeholder="Név"
+                      required=""
+                      value="víz"
+                    />
+                  </div>
+                  <div class="col-md-2">
+                    <input
+                      type="text"
+                      name="ingredient-quantity-4"
+                      class="form-control d-inline-block mr-2 mb-2"
+                      placeholder="Mennyiség"
+                      required=""
+                      value="1/2 csésze"
+                    />
+                  </div>
+                  <div class="col-md-2">
+                    <select name="ingredient-type-4" class="form-control d-inline-block mr-2 mb-2">
+                      <option value="" disabled="">Típus</option>
+                      <option value="meat">Hús</option>
+                      <option value="drink" selected="">Ital</option>
+                      <option value="dairy">Tejtermék</option>
+                      <option value="fruit">Gyümölcs</option>
+                      <option value="spice">Fűszer</option>
+                      <option value="spice">Egyéb</option>
+                    </select>
+                  </div>
+                  <div class="col-md-2">
+                    <div class="w-100">
+                      <button class="btn btn-danger mb-3" type="button">
+                        <svg
+                          aria-hidden="true"
+                          focusable="false"
+                          data-prefix="fas"
+                          data-icon="trash"
+                          class="svg-inline--fa fa-trash fa-w-14"
+                          role="img"
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 448 512"
+                        >
+                          <path
+                            fill="currentColor"
+                            d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z"
+                          ></path>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row w-100">
+                <div class="col-md-3 offset-md-9">
+                  <button type="button" class="btn btn-success btn-sm float-right">
+                    <svg
+                      aria-hidden="true"
+                      focusable="false"
+                      data-prefix="fas"
+                      data-icon="plus"
+                      class="svg-inline--fa fa-plus fa-w-14"
+                      role="img"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 448 512"
+                    >
+                      <path
+                        fill="currentColor"
+                        d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"
+                      ></path>
+                    </svg>
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-          <div className="form-group row pb-3 border-bottom">
-            <label className="col-sm-2 col-form-label">Kép:</label>
-            <div className="col-md-5">
-              <input type="file" name="img-url" className="form-control" />
-              <i>Figyelem, a fájlfeltöltés csak a mellékelt szerver programban működik!</i>
+            <div class="form-group row pb-3 border-bottom">
+              <label class="col-sm-2 col-form-label">Lépések:</label>
+              <div class="col-sm-10 offset-2">
+                <div class="row mb-3 border-bottom">
+                  <div class="col-md-6">
+                    <input
+                      type="text"
+                      name="step-content-0"
+                      class="form-control d-inline-block mr-2 mb-2"
+                      placeholder="1. lépés"
+                      required=""
+                      value="Helyezzük a marhapörköltet a cserépbe."
+                    />
+                  </div>
+                  <div class="col-md-2">
+                    <input
+                      type="number"
+                      name="step-timer-0"
+                      class="form-control d-inline-block mr-2 mb-2"
+                      placeholder="Idő"
+                      required=""
+                      value="0"
+                    />
+                  </div>
+                  <div class="col-md-2">
+                    <div class="w-100">
+                      <button class="btn btn-danger mb-3" type="button">
+                        <svg
+                          aria-hidden="true"
+                          focusable="false"
+                          data-prefix="fas"
+                          data-icon="trash"
+                          class="svg-inline--fa fa-trash fa-w-14"
+                          role="img"
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 448 512"
+                        >
+                          <path
+                            fill="currentColor"
+                            d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z"
+                          ></path>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-10 offset-2">
+                <div class="row mb-3 border-bottom">
+                  <div class="col-md-6">
+                    <input
+                      type="text"
+                      name="step-content-1"
+                      class="form-control d-inline-block mr-2 mb-2"
+                      placeholder="2. lépés"
+                      required=""
+                      value="Keverjük össze a szárított keverékeket egy tálban, és szórjuk rá a sültre."
+                    />
+                  </div>
+                  <div class="col-md-2">
+                    <input
+                      type="number"
+                      name="step-timer-1"
+                      class="form-control d-inline-block mr-2 mb-2"
+                      placeholder="Idő"
+                      required=""
+                      value="0"
+                    />
+                  </div>
+                  <div class="col-md-2">
+                    <div class="w-100">
+                      <button class="btn btn-danger mb-3" type="button">
+                        <svg
+                          aria-hidden="true"
+                          focusable="false"
+                          data-prefix="fas"
+                          data-icon="trash"
+                          class="svg-inline--fa fa-trash fa-w-14"
+                          role="img"
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 448 512"
+                        >
+                          <path
+                            fill="currentColor"
+                            d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z"
+                          ></path>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-10 offset-2">
+                <div class="row mb-3 border-bottom">
+                  <div class="col-md-6">
+                    <input
+                      type="text"
+                      name="step-content-2"
+                      class="form-control d-inline-block mr-2 mb-2"
+                      placeholder="3. lépés"
+                      required=""
+                      value="Öntsük a vizet a sültre."
+                    />
+                  </div>
+                  <div class="col-md-2">
+                    <input
+                      type="number"
+                      name="step-timer-2"
+                      class="form-control d-inline-block mr-2 mb-2"
+                      placeholder="Idő"
+                      required=""
+                      value="0"
+                    />
+                  </div>
+                  <div class="col-md-2">
+                    <div class="w-100">
+                      <button class="btn btn-danger mb-3" type="button">
+                        <svg
+                          aria-hidden="true"
+                          focusable="false"
+                          data-prefix="fas"
+                          data-icon="trash"
+                          class="svg-inline--fa fa-trash fa-w-14"
+                          role="img"
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 448 512"
+                        >
+                          <path
+                            fill="currentColor"
+                            d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z"
+                          ></path>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-10 offset-2">
+                <div class="row mb-3">
+                  <div class="col-md-6">
+                    <input
+                      type="text"
+                      name="step-content-3"
+                      class="form-control d-inline-block mr-2 mb-2"
+                      placeholder="4. lépés"
+                      required=""
+                      value="Főzzük alacsony hőfokon, 7-9 órán keresztül."
+                    />
+                  </div>
+                  <div class="col-md-2">
+                    <input
+                      type="number"
+                      name="step-timer-3"
+                      class="form-control d-inline-block mr-2 mb-2"
+                      placeholder="Idő"
+                      required=""
+                      value="420"
+                    />
+                  </div>
+                  <div class="col-md-2">
+                    <div class="w-100">
+                      <button class="btn btn-danger mb-3" type="button">
+                        <svg
+                          aria-hidden="true"
+                          focusable="false"
+                          data-prefix="fas"
+                          data-icon="trash"
+                          class="svg-inline--fa fa-trash fa-w-14"
+                          role="img"
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 448 512"
+                        >
+                          <path
+                            fill="currentColor"
+                            d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z"
+                          ></path>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row w-100">
+                <div class="col-md-3 offset-md-9">
+                  <button type="button" class="btn btn-success btn-sm float-right">
+                    <svg
+                      aria-hidden="true"
+                      focusable="false"
+                      data-prefix="fas"
+                      data-icon="plus"
+                      class="svg-inline--fa fa-plus fa-w-14"
+                      role="img"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 448 512"
+                    >
+                      <path
+                        fill="currentColor"
+                        d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"
+                      ></path>
+                    </svg>
+                  </button>
+                </div>
+              </div>
             </div>
-            <div className="col-md-5">
-              <img
-                src={`${process.env.REACT_APP_BACKEND_URL}/static/images/${recipe.imageURL}`}
-                className="img-thumbnail"
-              />
+            <div class="form-group row pb-3 border-bottom">
+              <label class="col-sm-2 col-form-label">Kép:</label>
+              <div class="col-md-5">
+                <input type="file" name="img-url" class="form-control" /><i
+                  >Figyelem, a fájlfeltöltés csak a mellékelt szerver programban működik!</i
+                >
+              </div>
+              <div class="col-md-5">
+                <img src="http://localhost:9090/static/images/picVfzLZo.jpg" class="img-thumbnail" />
+              </div>
             </div>
-          </div>
-          <button type="submit" className="btn btn-success btn-sm">
-            Küldés <FontAwesomeIcon icon={faCheckCircle} />
-          </button>
-        </form>
+            <button type="submit" class="btn btn-success btn-sm">
+              Küldés
+              <svg
+                aria-hidden="true"
+                focusable="false"
+                data-prefix="fas"
+                data-icon="check-circle"
+                class="svg-inline--fa fa-check-circle fa-w-16"
+                role="img"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 512 512"
+              >
+                <path
+                  fill="currentColor"
+                  d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z"
+                ></path>
+              </svg>
+            </button>
+          </form>
+        </div>
       </div>
+    </div>
   </body>
 </html>

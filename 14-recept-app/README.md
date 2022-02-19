@@ -1,58 +1,56 @@
-Szerver elindítása:
-Töltsd le az alábbi állományt és tömörítsd ki egy mappába
-https://kodbazis.hu/public/app/recept-app-szerver.zip
+# Recept App önálló feladat
 
-npm install paranccsal telepítsd a harmadik féltől származó könyvtárakat
-Ha kész a telepítés, indítsd el a szervert, a node index.js paranccsal
+## Szerver elindítása:
+
+Telepítsd a harmadik féltől származó könyvtárakat `npm install` paranccsal <br />
+Ha kész a telepítés, indítsd el a szervert, a `npm run dev` paranccsal <br />
 A szerver a http://localhost:9090 URL-en fogadja a kéréseket
 
+## Megszólítható endpointok:
 
-Megszólítható endpointok:
-Method	Útvonal	Funkcionalitás
+| Method | Útvonal | Funkcionalitás |
+| --- | ----------- | ------------- |
+| GET | `/api/recipes` | Összes recept kilistázása |
+| GET | `/api/recipes/:receptSlug` | Egyetlen recept lekérése keresőbarát név alapján |
+| POST | `/api/recipes` | Új recept létrehozása |
+| PUT | `/api/recipes/:id` | Recept felülírása id alapján |
+| DELETE | `/api/recipes/:id` | Recept törlése id alapján |
 
-GET	"/api/recipes"	Összes recept kilistázása
-GET	"/api/recipes/:recipeSlug"	Egyetlen recept lekérése slug alapján
-POST	"/api/recipes"	Új recept létrehozása
-PUT	"/api/recipes/:id"	Recept felülírása id alapján
-DELETE	"/api/recipes/:id"	Recept törlése id alapján
+<br />
+A képek a "/static/images" publikus mappába mentődnek, így a React appodból innen tudod őket megszerezni. <br />
 
-A képek a "/static/images" publikus mappába mentődnek, így a React appodból innen tudod őket megszerezni.
+Az egyéb statikus fájlok (pl a logó), a "/static/assets" mappából nyerhetőek ki! <br />
 
-Az egyéb statikus fájlok (pl a logó), a "/static/assets" mappából nyerhetőek ki!
+## Ajánlott komponens felosztás: <br />
+- App
+- Home
+- RecipeList
+- RecipeSingle
+- RecipeCreate
+- RecipeEdit
+- Modal
+- Spinner
 
+## Harmadik féltől származó könyvtárak:
 
-Ajánlott komponens felosztás:
- App
- Home
- RecipeList
- RecipeSingle
- RecipeCreate
- RecipeEdit
- Modal
- Spinner
- 
+### Create React App:
 
-Harmadik féltől származó könyvtárak:
+`npx create-react-app .`
 
-Create React App:
+### Ikonok:
 
-npx create-react-app .
- 
+`npm i --save @fortawesome/fontawesome-svg-core` <br/>
+`npm i --save @fortawesome/free-solid-svg-icons` <br/>
+`npm i --save @fortawesome/react-fontawesome` <br/>
 
-Ikonok:
+## Útvonalválasztó:
 
-npm i --save @fortawesome/fontawesome-svg-core
-npm i --save @fortawesome/free-solid-svg-icons
-npm i --save @fortawesome/react-fontawesome
- 
+`npm i --save react-router-dom`
 
-Útvonalválasztó:
+## Megjelenés:
 
-npm i --save react-router-dom
- 
+`npm i --save bootstrap`
 
-Megjelenés:
+<br/>
 
-npm i --save bootstrap
- 
-Sok sikert!
+# Sok sikert!

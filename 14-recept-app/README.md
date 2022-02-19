@@ -3,7 +3,7 @@
 ## Szerver elindítása:
 
 Telepítsd a harmadik féltől származó könyvtárakat `npm install` paranccsal <br />
-Ha kész a telepítés, indítsd el a szervert, a `npm run dev` paranccsal <br />
+Ha kész a telepítés, indítsd el a szervert, a `node index.js` paranccsal <br />
 A szerver a http://localhost:9090 URL-en fogadja a kéréseket
 
 ## Megszólítható endpointok:

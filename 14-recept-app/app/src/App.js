@@ -7,6 +7,9 @@ import { RecipeList } from "./RecipeList";
 import { RecipeSingle } from "./RecipeSingle";
 
 function App() {
+
+
+
   return (
     <Fragment>
       <nav className="navbar navbar-expand-sm navbar-dark bg-primary mb-3">
@@ -34,7 +37,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/receptek" element={<RecipeList />} />
-        <Route path="/receptek/:receptSlug" element={<RecipeSingle />} />
+        <Route path="/recept/:receptSlug" element={<RecipeSingle />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       Footer

@@ -4,7 +4,7 @@ import "./App.css";
 function App() {
   const [todos, setTodos] = useState([]);
   const [filteredTodos, setFilteredTodos] = useState([]);
-  const [patchPendingId, setPatchPendingId] = useState(null);
+  const [pendingIds, setPendingIds] = useState([]);
 
   function fetchTodos() {
     return fetch("http://localhost:8080/teendok")
@@ -14,27 +14,6 @@ function App() {
         alert("Hiba történt");
       });
   }
-
-  /*
-    1. Módosítsd a renderelő logikát, a template.html sablonnak megfelelően
-      Ha az adott teendő isCompleted kulcsa true:
-        A gomb legyen "Elvégzendőnek jelölés" feliratú
-      máskülönben
-        A gomb legyen "Elvégzettnek jelölés" feliratú
-
-    2.
-    Gombra való kattintáskor küldj kérést PATCH methoddal a
-    http://localhost:8080/teendok?id=" + id URL-re, a következő JSON body-val!
-    { isCompleted: true/false }
-
-    3.
-    Amíg a kérés folyamatban van, a megadott elem gombját állítsd disabled-re és írd ki a
-    "Módosítás folyamatban" feliratot, az adott listaelemnél!
-    
-    4.
-    Ha megjött a válasz, a state-ben is állítsd be az új állapotot!
-
-  */
 
   const [isInitializing, setInitializing] = useState(true);
   useEffect(() => {
@@ -100,42 +79,44 @@ function App() {
         {filteredTodos.map((todo) => <ListItem
           key={todo.id}
           todo={todo}
-          setPatchPendingId={setPatchPendingId}
-          patchPendingId={patchPendingId}
-          fetchTodos={fetchTodos}
+          setPendingIds={setPendingIds}
+          pendingIds={pendingIds}
+          setTodos={setTodos}
         />)}
       </ul>
     </div>
   );
 }
 
-function ListItem({ todo, setPatchPendingId, patchPendingId, setTodos }) {
-
+function ListItem({ todo, setPendingIds, pendingIds, setTodos }) {
 
   function patchTodo(id, isCompleted) {
-    setPatchPendingId(id);
+    setPendingIds(prev => [...prev, id]);
     fetch("http://localhost:8080/teendok?id=" + id, {
       method: "PATCH",
       body: JSON.stringify({ isCompleted: isCompleted }),
     })
-      .then((res) => (res.ok ? res.json() : Promise.reject()))
+      .then((res) => res.json())
       .then(() => {
         setTodos(prev => {
           const i = prev.findIndex(todo => todo.id === id);
+
           prev[i] = {
             ...prev[i],
             isCompleted: isCompleted
-          } 
-          return prev;
+          }
+          return [...prev];
         })
       })
-      .then(() => setPatchPendingId(null))
+      .then(() => {
+        setPendingIds(prev => prev.filter(todoId => todoId !== id));
+      })
       .catch((err) => {
-        alert("Hiba történt");
+        alert(err);
       });
   }
 
-  if (todo.id === patchPendingId) {
+  if (pendingIds.includes(todo.id)) {
     return (
       <li className="list-group-item text-center">
         <div className="spinner-border text-primary"></div>
@@ -144,8 +125,12 @@ function ListItem({ todo, setPatchPendingId, patchPendingId, setTodos }) {
   }
 
   return (
-    <li className="list-group-item">
-      <span className={"badge p-2 mr-2 " + (todo.isCompleted ? "badge-success" : "badge-danger")}>
+    <li className="list-group-item" style={{
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+    }}>
+      <span className={"p-2 mr-2"}>
         {todo.isCompleted ? "✔" : "✘"}
       </span>
       <span className={"mr-2 " + (todo.isCompleted ? "text-success" : "text-danger")}>{todo.title}</span>

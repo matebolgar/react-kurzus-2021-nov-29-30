@@ -2,6 +2,7 @@ import { faClock } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Fragment, useEffect, useState } from "react";
 import { useParams } from "react-router";
+import Spinner from "./Spinner";
 
 export function RecipeSingle() {
   const params = useParams();
@@ -24,6 +25,14 @@ export function RecipeSingle() {
         setPending(false);
       });
   }, []);
+
+  if (isError) {
+    return "Hiba történt... Próbáld újra!";
+  }
+
+  if (isPending) {
+    return <Spinner />;
+  }
 
   return (
     <Fragment>

@@ -5,6 +5,7 @@ import { Fragment } from "react";
 import { Home } from "./Home";
 import { RecipeList } from "./RecipeList";
 import { RecipeSingle } from "./RecipeSingle";
+import { RecipeCreate } from "./RecipeCreate";
 
 function App() {
 
@@ -38,6 +39,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/receptek" element={<RecipeList />} />
         <Route path="/recept/:receptSlug" element={<RecipeSingle />} />
+        <Route path="/uj-recept" element={<RecipeCreate />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       Footer

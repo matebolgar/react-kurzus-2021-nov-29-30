@@ -1,13 +1,15 @@
 import { faCheckCircle, faPlus, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 export function RecipeCreate() {
-
+  const navigate = useNavigate();
   const [name, setName] = useState("");
   const [ingredients, setIngredients] = useState([
     {
+      id: uuidv4(),
       name: "",
       quantity: "",
       type: ""
@@ -16,6 +18,7 @@ export function RecipeCreate() {
 
   const [steps, setSteps] = useState([
     {
+      id: uuidv4(),
       timer: "",
       content: "",
     }
@@ -29,9 +32,24 @@ export function RecipeCreate() {
         <hr />
         <form onSubmit={(e) => {
           e.preventDefault();
-          console.log(name);
-          console.log(ingredients);
-          console.log(steps);
+
+
+          const body = new FormData();
+          body.append("name", name);
+          body.append("ingredients", JSON.stringify(ingredients));
+          body.append("steps", JSON.stringify(steps));
+
+          const file = e.target.elements["img-url"].files[0]
+          body.append("image", file);
+
+          fetch(process.env.REACT_APP_API_URL + "/api/recipes", {
+            method: "POST",
+            body: body
+          })
+            .then(res => res.json())
+            .then((newRecipe) => {
+              navigate("/recept/" + newRecipe.slug);
+            });
         }}>
           <div className="form-group row pb-3 border-bottom">
             <label className="col-sm-2 col-form-label">Név:</label>
@@ -47,7 +65,7 @@ export function RecipeCreate() {
           <div className="form-group row pb-3 border-bottom">
             <label className="col-sm-2 col-form-label">Hozzávalók:</label>
             {ingredients.map((ingredient, i) => (
-              <div key={i} className="col-sm-10 offset-2">
+              <div key={ingredient.id} className="col-sm-10 offset-2">
                 <div className="row mb-3">
                   <div className="col-md-6">
                     <input
@@ -134,6 +152,7 @@ export function RecipeCreate() {
                     setIngredients(prev => {
                       return [
                         ...prev, {
+                          id: uuidv4(),
                           name: "",
                           quantity: "",
                           type: ""
@@ -149,7 +168,7 @@ export function RecipeCreate() {
             <label className="col-sm-2 col-form-label">Lépések:</label>
 
             {steps.map((step, i) => (
-              <div key={i} className="col-sm-10 offset-2">
+              <div key={step.id} className="col-sm-10 offset-2">
                 <div className="row mb-3 border-bottom">
                   <div className="col-md-6">
                     <input
@@ -212,6 +231,7 @@ export function RecipeCreate() {
                   setSteps(prev => {
                     return [
                       ...prev, {
+                        id: uuidv4(),
                         timer: "",
                         content: "",
                       }]
@@ -238,5 +258,11 @@ export function RecipeCreate() {
       </div>
     </div>
 
+  );
+}
+
+function uuidv4() {
+  return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c =>
+    (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
   );
 }

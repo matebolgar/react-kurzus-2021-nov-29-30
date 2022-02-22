@@ -9,7 +9,12 @@ import { RecipeCreate } from "./RecipeCreate";
 
 function App() {
 
+  /*
+    RecipeEdit
+    Recept törlése
 
+    Minden aszinkron művelet közben jelenítsd meg a Spinner komponenst!
+  */
 
   return (
     <Fragment>

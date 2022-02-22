@@ -55,7 +55,6 @@ function App() {
                 <div className="form-check">
                   <input
                     type="checkbox"
-                    className="form-control"
                     onChange={() => {
                       setShowOnlyUnCompleted((prev) => !prev);
                     }}

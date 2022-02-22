@@ -98,13 +98,17 @@ function ListItem({ todo, setPendingIds, pendingIds, setTodos }) {
       .then((res) => res.json())
       .then(() => {
         setTodos(prev => {
-          const i = prev.findIndex(todo => todo.id === id);
+          const next = prev.slice();
+          // const next = [...prev];
+          // const next = {...prev};
 
-          prev[i] = {
+          const i = prev.findIndex(todo => todo.id === id);
+          next[i] = {
             ...prev[i],
             isCompleted: isCompleted
           }
-          return [...prev];
+          
+          return next;
         })
       })
       .then(() => {

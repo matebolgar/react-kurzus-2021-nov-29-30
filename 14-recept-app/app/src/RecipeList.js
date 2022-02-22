@@ -26,7 +26,7 @@ export function RecipeList() {
     <div className="container">
       {alignToRows(recipes).map((row, i) => <div key={i} className="row mb-3">
         {row.map(recipe =>
-          <div className="col-md-4">
+          <div key={recipe.id} className="col-md-4">
             <div className="card w-100 h-100">
               <img className="card-img-top mb-2" src={process.env.REACT_APP_API_URL + "/static/images/" + recipe.imageURL} />
               <div className="card-body"><h5 className="card-title">{recipe.name}</h5></div>

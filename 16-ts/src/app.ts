@@ -76,14 +76,20 @@ window.onload = function () {
       ["mock", mockPostLister],
     ]);
 
-    
     const strategy = strategyMap.get(selectedStrategy);
-    if(!strategy) {
+    if (!strategy) {
       return;
     }
 
     controller(strategy)(limit).then((result) => {
-      console.log(result);
+      const container = document.getElementById("posts-container");
+      if (!container) {
+        return;
+      }
+      container.innerHTML = result.posts.reduce(
+        (acc, post) => acc + `<li class="list-group-item">${post.title}</li>`,
+        ""
+      );
     });
   };
 };

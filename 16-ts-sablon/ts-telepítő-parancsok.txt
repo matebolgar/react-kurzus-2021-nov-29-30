@@ -1,0 +1,4 @@
+npx create-react-app@latest . --template typescript
+npm install react-router-dom
+npm install axios
+npm i bootstrap

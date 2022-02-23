@@ -71,9 +71,3 @@ window.onload = function () {
         });
     };
 };
-controller(networkPostLister)(5).then((result) => {
-    console.log(result);
-});
-controller(mockPostLister)(1).then((result) => {
-    console.log(result);
-});
